@@ -1,9 +1,12 @@
 package com.vinaysshenoy.okulusdemo;
 
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.vinaysshenoy.okulusdemo.fragments.RoundedRectanglesFragment;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -12,6 +15,19 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if(savedInstanceState == null) {
+            loadRoundRectFragment();
+        }
+    }
+
+    private void loadRoundRectFragment() {
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.frame_content,
+                         Fragment.instantiate(this, RoundedRectanglesFragment.class.getName()),
+                         "fragment_rounded_rectangles")
+                .commit();
     }
 
 
